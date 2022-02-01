@@ -1,0 +1,11 @@
+.form-popup__input {
+    margin: 0 auto;
+    padding: 69px 0 48px;
+    border: 0;
+}
+
+@media screen and (min-width: 1024px) {
+    .form-popup__input {
+        padding-top: 47px;
+    }
+}

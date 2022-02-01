@@ -1,0 +1,15 @@
+.page {
+    min-width: 320px;
+    max-width: 1280px;
+    background-color: #000;
+    color: #fff;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    position: relative;
+}
+
+@media screen and (min-width: 1024px) {
+    .page {
+        width: 880px;
+        margin: 0 auto;
+    }
+}

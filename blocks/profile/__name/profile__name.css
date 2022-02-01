@@ -1,0 +1,30 @@
+.profile__name {
+    font-weight: 500;
+    font-size: 27px;
+    line-height: 33px;
+    text-align: right;
+    margin: 0;
+    padding-top: 26px;
+    padding-bottom: 8px;
+    grid-column: 1;
+    grid-row: 2;
+}
+
+@media screen and (min-width: 768px) {
+    .profile__name {
+        grid-column: 2;
+        grid-row: 1;
+        text-align: left;
+        padding-bottom: 16px;
+        padding-top: 22px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .profile__name {
+        padding-bottom: 8px;
+        padding-top: 22px;
+        font-size: 42px;
+        line-height: 48px;
+    }
+}

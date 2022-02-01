@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesto</title>
+    <meta name="description" content="travel diary">
+    <meta name="keywords" content="traveling travel tourism journey">
+    <meta name="author" content="Catherine Kuznetcova">
+    <link rel="stylesheet" href="./pages/index.css">
+</head>
+<body class="page">
+    <header class="header">
+        <img class="header__logo" src="./images/logo.png" alt="logo-mesto-russia">
+    </header>
+    
+    <main class="content">
+        <section class="profile">
+            <img src="./images/profile-photo.jpg" alt="Жак-Ив Кусто" class="profile__photo">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button class="profile__button-edit"></button>
+            <h2 class="profile__role">Исследователь океана</h2>
+            <button class="profile__button-plus"></button>
+        </section>
+
+        <section class="cards">
+            <article class="cards__item">
+                <img src="./images/Karachaevsk.jpg" alt="Карачаевск" class="cards__image">
+                <div class="cards__description">
+                    <h2 class="cards__title">Карачаевск</h2>
+                    <button class="cards__button-like cards__button-like_status_active"></button>
+                </div>
+            </article>
+            <article class="cards__item">
+                <img src="./images/Elbrus.jpg" alt="Эльбрус" class="cards__image">
+                <div class="cards__description">
+                    <h2 class="cards__title">Гора Эльбрус</h2>
+                    <button class="cards__button-like"></button>
+                </div>
+            </article>
+            <article class="cards__item">
+                <img src="./images/Dombay.jpg" alt="Домбай" class="cards__image">
+                <div class="cards__description">
+                    <h2 class="cards__title">Домбай</h2>
+                    <button class="cards__button-like"></button>
+                </div>
+            </article>
+            <article class="cards__item">
+                <img src="./images/Elbrus.jpg" alt="Эльбрус" class="cards__image">
+                <div class="cards__description">
+                    <h2 class="cards__title">Гора Эльбрус</h2>
+                    <button class="cards__button-like"></button>
+                </div>
+            </article>
+            <article class="cards__item">
+                <img src="./images/Dombay.jpg" alt="Домбай" class="cards__image">
+                <div class="cards__description">
+                    <h2 class="cards__title">Домбай</h2>
+                    <button class="cards__button-like"></button>
+                </div>
+            </article>
+            <article class="cards__item">
+                <img src="./images/Karachaevsk.jpg" alt="Карачаевск" class="cards__image">
+                <div class="cards__description">
+                    <h2 class="cards__title">Карачаевск</h2>
+                    <button class="cards__button-like"></button>
+                </div>
+            </article>
+        </section>
+    </main>
+    <footer class="footer">&copy; 2022 Mesto Russia</footer>
+    <section class="popup popup_opened">
+        <button class="popup__button-close"></button>
+        <div class="popup__container">
+            <h2 class="popup__header">Редактировать пофиль</h2>
+            <form class="form-popup">
+                <fieldset class="form-popup__input">
+                    <input type="text" class="form-popup__item form-popup__item_value_name" placeholder="Имя" value="Жак-Ив Кусто">
+                    <input type="text" class="form-popup__item" placeholder="О себе" value="Исследователь океана">
+                </fieldset>
+                <fieldset class="form-popup__handlers">
+                    <input type="submit" class="form-popup__button" value="Сохранить">
+                </fieldset>
+            </form>
+        </div>
+    </section>
+</body>
+</html>
