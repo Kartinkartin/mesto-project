@@ -3,20 +3,29 @@
     font-size: 27px;
     line-height: 33px;
     text-align: right;
+    justify-self: end;
+    max-width: 189px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     margin: 0;
     padding-top: 26px;
     padding-bottom: 8px;
+    padding-left: 27px;
     grid-column: 1;
-    grid-row: 2;
+    grid-row: 2;  
 }
 
 @media screen and (min-width: 768px) {
     .profile__name {
         grid-column: 2;
         grid-row: 1;
+        justify-self: start;
+        max-width: 320px;
         text-align: left;
         padding-bottom: 16px;
         padding-top: 22px;
+        padding-left: 0;
     }
 }
 

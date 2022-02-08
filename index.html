@@ -11,77 +11,81 @@
 </head>
 <body class="page">
     <header class="header">
-        <img class="header__logo" src="./images/logo.png" alt="logo-mesto-russia">
+        <img class="header__logo" src="./images/logo.svg" alt="logo-mesto-russia">
     </header>
     
     <main class="content">
         <section class="profile">
             <img src="./images/profile-photo.jpg" alt="Жак-Ив Кусто" class="profile__photo">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="profile__button-edit"></button>
-            <h2 class="profile__role">Исследователь океана</h2>
-            <button class="profile__button-plus"></button>
+            <button type="button" class="profile__button-edit"></button>
+            <p class="profile__role">Исследователь океана</p>
+            <button type="button" class="profile__button-plus"></button>
         </section>
 
         <section class="cards">
-            <article class="cards__item">
-                <img src="./images/Karachaevsk.jpg" alt="Карачаевск" class="cards__image">
-                <div class="cards__description">
-                    <h2 class="cards__title">Карачаевск</h2>
-                    <button class="cards__button-like cards__button-like_status_active"></button>
-                </div>
-            </article>
-            <article class="cards__item">
-                <img src="./images/Elbrus.jpg" alt="Эльбрус" class="cards__image">
-                <div class="cards__description">
-                    <h2 class="cards__title">Гора Эльбрус</h2>
-                    <button class="cards__button-like"></button>
-                </div>
-            </article>
-            <article class="cards__item">
-                <img src="./images/Dombay.jpg" alt="Домбай" class="cards__image">
-                <div class="cards__description">
-                    <h2 class="cards__title">Домбай</h2>
-                    <button class="cards__button-like"></button>
-                </div>
-            </article>
-            <article class="cards__item">
-                <img src="./images/Elbrus.jpg" alt="Эльбрус" class="cards__image">
-                <div class="cards__description">
-                    <h2 class="cards__title">Гора Эльбрус</h2>
-                    <button class="cards__button-like"></button>
-                </div>
-            </article>
-            <article class="cards__item">
-                <img src="./images/Dombay.jpg" alt="Домбай" class="cards__image">
-                <div class="cards__description">
-                    <h2 class="cards__title">Домбай</h2>
-                    <button class="cards__button-like"></button>
-                </div>
-            </article>
-            <article class="cards__item">
-                <img src="./images/Karachaevsk.jpg" alt="Карачаевск" class="cards__image">
-                <div class="cards__description">
-                    <h2 class="cards__title">Карачаевск</h2>
-                    <button class="cards__button-like"></button>
-                </div>
-            </article>
+            <ul class="cards__list">
+                <li class="cards__item">
+                    <img src="./images/Karachaevsk.jpg" alt="Карачаевск" class="cards__image">
+                    <div class="cards__description">
+                        <h2 class="cards__title">Карачаевск</h2>
+                        <button type="button" class="cards__button-like cards__button-like_status_active"></button>
+                    </div>
+                </li>
+                <li class="cards__item">
+                    <img src="./images/Elbrus.jpg" alt="Эльбрус" class="cards__image">
+                    <div class="cards__description">
+                        <h2 class="cards__title">Гора Эльбрус</h2>
+                        <button type="button" class="cards__button-like"></button>
+                    </div>
+                </li>
+                <li class="cards__item">
+                    <img src="./images/Dombay.jpg" alt="Домбай" class="cards__image">
+                    <div class="cards__description">
+                        <h2 class="cards__title">Домбай</h2>
+                        <button type="button" class="cards__button-like"></button>
+                    </div>
+                </li>
+                <li class="cards__item">
+                    <img src="./images/Elbrus.jpg" alt="Эльбрус" class="cards__image">
+                    <div class="cards__description">
+                        <h2 class="cards__title">Гора Эльбрус</h2>
+                        <button type="button" class="cards__button-like"></button>
+                    </div>
+                </li>
+                <li class="cards__item">
+                    <img src="./images/Dombay.jpg" alt="Домбай" class="cards__image">
+                    <div class="cards__description">
+                        <h2 class="cards__title">Домбай</h2>
+                        <button type="button" type="button" class="cards__button-like"></button>
+                    </div>
+                </li>
+                <li class="cards__item">
+                    <img src="./images/Karachaevsk.jpg" alt="Карачаевск" class="cards__image">
+                    <div class="cards__description">
+                        <h2 class="cards__title">Карачаевск</h2>
+                        <button type="button" class="cards__button-like"></button>
+                    </div>
+                </li>
+            </ul>
         </section>
     </main>
-    <footer class="footer">&copy; 2022 Mesto Russia</footer>
+    <footer class="footer"><p class="footer__text">&copy; 2022 Mesto Russia</p></footer>
     <section class="popup popup_opened">
-        <button class="popup__button-close"></button>
-        <div class="popup__container">
-            <h2 class="popup__header">Редактировать пофиль</h2>
-            <form class="form-popup">
-                <fieldset class="form-popup__input">
-                    <input type="text" class="form-popup__item form-popup__item_value_name" placeholder="Имя" value="Жак-Ив Кусто">
-                    <input type="text" class="form-popup__item" placeholder="О себе" value="Исследователь океана">
-                </fieldset>
-                <fieldset class="form-popup__handlers">
-                    <input type="submit" class="form-popup__button" value="Сохранить">
-                </fieldset>
-            </form>
+        <div class="popup__space">
+            <button type="button" class="popup__button-close"></button>
+            <div class="popup__container">
+                <h2 class="popup__header">Редактировать пофиль</h2>
+                <form class="form-popup" name="form-edit">
+                    <fieldset class="form-popup__input">
+                        <input name="name" type="text" class="form-popup__item" placeholder="Имя" value="Жак-Ив Кусто">
+                        <input name="role" type="text" class="form-popup__item" placeholder="О себе" value="Исследователь океана">
+                    </fieldset>
+                    <fieldset class="form-popup__handlers">
+                        <button type="submit" class="form-popup__button" value="Сохранить">Сохранить</button>
+                    </fieldset>
+                </form>
+            </div>
         </div>
     </section>
 </body>

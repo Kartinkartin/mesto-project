@@ -5,10 +5,10 @@
     margin: 0;
     padding: 0;
     background-color: #000000;
-    background-image: url(../../../images/edit.png);
+    background-image: url(../../../images/Edit-Button.svg);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 7.5px;
+    background-size: contain;
     grid-column: 2;
     grid-row: 2;
     align-self: end;

@@ -4,11 +4,12 @@
     border: none;
     margin: 0;
     background-color: #fff;
-    background-image: url(../../../images/Like.png);
+    background-image: url(../../../images/Like.svg);
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
     opacity: 1;
+    transition: opacity 0.5s linear;
 }
 
 @media screen and (min-width: 1024px) {
@@ -17,6 +18,5 @@
     }
     .cards__button-like:hover {
         opacity: 0.5;
-        transition: opacity 0.5s linear;
     }
 }

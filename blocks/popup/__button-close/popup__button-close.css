@@ -2,10 +2,11 @@
     width: 20px;
     height: 20px;
     background-color: rgb(0, 0, 0, -0.5);
-    background-image: url(../../../images/Close-Icon.png);
+    background-image: url(../../../images/Close-Icon.svg);
     background-position: center;
     background-size: cover;
     border: none;
+    align-self: end;
     margin-bottom: 16px;
     margin-right: -262px;
 }
@@ -15,6 +16,12 @@
         width: 32px;
         height: 32px;
         margin-bottom: 8px;
-        margin-right: -478px;
+        margin-right: -40px;
+        cursor: pointer;
+        opacity: 1;
+        transition: opacity 0.5s linear;
+    }
+    .popup__button-close:hover {
+        opacity: 0.6;
     }
 }
