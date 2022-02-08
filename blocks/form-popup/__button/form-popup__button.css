@@ -11,8 +11,6 @@
     font-size: 14px;
     line-height: 17px;
     font-weight: normal;
-    opacity: 1;
-    transition: opacity 0.5s linear;
 }
 
 @media screen and (min-width: 1024px) {
