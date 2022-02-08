@@ -28,12 +28,11 @@
 
 @media screen and (min-width: 1024px) {
     .profile__button-edit {
-        margin-left: 19px;
-        margin-bottom: 17px;
         cursor: pointer;
+        opacity: 1;
+        transition: opacity 1s linear;
     }
     .profile__button-edit:hover {
         opacity: 0.6;
-        transition: opacity 1s linear;
     }
 }

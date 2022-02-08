@@ -1,7 +1,7 @@
 .popup__header {
     color: black;
     text-align: left;
-    font-family: Inter;
+    font-family: Inter, Arial, Helvetica, sans-serif;
     font-weight: 900;
     font-size: 18px;
     line-height: 22px;
@@ -12,7 +12,7 @@
 @media screen and (min-width: 1024px) {
     .popup__header {
         font-size: 24px;
-        line-height: 23px;
+        line-height: 29px;
         padding-left: 36px;
     }
 }

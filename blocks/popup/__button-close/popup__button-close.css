@@ -8,7 +8,7 @@
     border: none;
     align-self: end;
     margin-bottom: 16px;
-    margin-right: -262px;
+    margin-right: 0;
 }
 
 @media screen and (min-width: 1024px) {

@@ -16,7 +16,6 @@
         grid-column: 4;
         grid-row: 1/-1;
         width: 150px;
-        height: 50px;
         align-self: center;
         justify-self: end;
     }
@@ -26,9 +25,10 @@
     .profile__button-plus {
         cursor: pointer;
         margin-bottom: 13px;
+        opacity: 1;
+        transition: opacity 1s linear;
     }
     .profile__button-plus:hover {
         opacity: 0.6;
-        transition: opacity 1s linear;
     }
 }
