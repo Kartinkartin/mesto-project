@@ -8,5 +8,15 @@
     height: 100%;
     flex-direction: column;
     align-items: center;
+    box-sizing: border-box;
     padding-top: calc(50vh - 250px);
+    padding-right: calc((100% - 282px)/2);
+    padding-left: calc((100% - 282px)/2);
+}
+
+@media screen and (min-width: 1024px) {
+    .popup {
+        padding-left: 225px;
+        padding-right: 225px;
+    }
 }

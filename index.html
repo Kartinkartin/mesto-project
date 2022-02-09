@@ -57,7 +57,7 @@
                     <img src="./images/Dombay.jpg" alt="Домбай" class="cards__image">
                     <div class="cards__description">
                         <h2 class="cards__title">Домбай</h2>
-                        <button type="button" type="button" class="cards__button-like"></button>
+                        <button type="button" class="cards__button-like"></button>
                     </div>
                 </li>
                 <li class="cards__item">
@@ -70,22 +70,22 @@
             </ul>
         </section>
     </main>
-    <footer class="footer"><p class="footer__text">&copy; 2022 Mesto Russia</p></footer>
-    <section class="popup popup_opened">
-        <div class="popup__space">
-            <button type="button" class="popup__button-close"></button>
-            <div class="popup__container">
-                <h2 class="popup__header">Редактировать профиль</h2>
-                <form class="form-popup" name="form-edit">
-                    <fieldset class="form-popup__input">
-                        <input name="name" type="text" class="form-popup__item" placeholder="Имя" value="Жак-Ив Кусто">
-                        <input name="role" type="text" class="form-popup__item" placeholder="О себе" value="Исследователь океана">
-                    </fieldset>
-                    <fieldset class="form-popup__handlers">
-                        <button type="submit" class="form-popup__button" value="Сохранить">Сохранить</button>
-                    </fieldset>
-                </form>
-            </div>
+    <footer class="footer">
+        <p class="footer__text">&copy; 2022 Mesto Russia</p>
+    </footer>
+    <section class="popup">
+        <button type="button" class="popup__button-close"></button>
+        <div class="popup__container">
+            <h2 class="popup__header">Редактировать профиль</h2>
+            <form class="form-popup" name="form-edit">
+                <fieldset class="form-popup__input">
+                    <input name="name" type="text" class="form-popup__item" placeholder="Имя" value="Жак-Ив Кусто">
+                    <input name="role" type="text" class="form-popup__item" placeholder="О себе" value="Исследователь океана">
+                </fieldset>
+                <fieldset class="form-popup__handlers">
+                    <button type="submit" class="form-popup__button">Сохранить</button>
+                </fieldset>
+            </form>
         </div>
     </section>
 </body>
