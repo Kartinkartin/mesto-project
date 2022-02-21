@@ -25,48 +25,7 @@
 
         <section class="cards">
             <ul class="cards__list">
-                <li class="cards__item">
-                    <img src="./images/Karachaevsk.jpg" alt="Карачаевск" class="cards__image">
-                    <div class="cards__description">
-                        <h2 class="cards__title">Карачаевск</h2>
-                        <button type="button" class="cards__button-like cards__button-like_status_active"></button>
-                    </div>
-                </li>
-                <li class="cards__item">
-                    <img src="./images/Elbrus.jpg" alt="Эльбрус" class="cards__image">
-                    <div class="cards__description">
-                        <h2 class="cards__title">Гора Эльбрус</h2>
-                        <button type="button" class="cards__button-like"></button>
-                    </div>
-                </li>
-                <li class="cards__item">
-                    <img src="./images/Dombay.jpg" alt="Домбай" class="cards__image">
-                    <div class="cards__description">
-                        <h2 class="cards__title">Домбай</h2>
-                        <button type="button" class="cards__button-like"></button>
-                    </div>
-                </li>
-                <li class="cards__item">
-                    <img src="./images/Elbrus.jpg" alt="Эльбрус" class="cards__image">
-                    <div class="cards__description">
-                        <h2 class="cards__title">Гора Эльбрус</h2>
-                        <button type="button" class="cards__button-like"></button>
-                    </div>
-                </li>
-                <li class="cards__item">
-                    <img src="./images/Dombay.jpg" alt="Домбай" class="cards__image">
-                    <div class="cards__description">
-                        <h2 class="cards__title">Домбай</h2>
-                        <button type="button" class="cards__button-like"></button>
-                    </div>
-                </li>
-                <li class="cards__item">
-                    <img src="./images/Karachaevsk.jpg" alt="Карачаевск" class="cards__image">
-                    <div class="cards__description">
-                        <h2 class="cards__title">Карачаевск</h2>
-                        <button type="button" class="cards__button-like"></button>
-                    </div>
-                </li>
+                
             </ul>
         </section>
     </main>
@@ -79,8 +38,8 @@
             <h2 class="popup__header">Редактировать профиль</h2>
             <form class="form-popup" name="form-edit">
                 <fieldset class="form-popup__input">
-                    <input name="name" type="text" class="form-popup__item" placeholder="Имя" value="Жак-Ив Кусто">
-                    <input name="role" type="text" class="form-popup__item" placeholder="О себе" value="Исследователь океана">
+                    <input name="name" type="text" class="form-popup__item" placeholder="Имя">
+                    <input name="role" type="text" class="form-popup__item" placeholder="О себе">
                 </fieldset>
                 <fieldset class="form-popup__handlers">
                     <button type="submit" class="form-popup__button">Сохранить</button>
@@ -88,5 +47,38 @@
             </form>
         </div>
     </section>
+    <section class="popup place">
+        <div class="popup__container">
+            <button type="button" class="popup__button-close"></button>
+            <h2 class="popup__header">Новое место</h2>
+            <form class="form-popup" name="form-edit">
+                <fieldset class="form-popup__input">
+                    <input name="new-place-name" type="text" class="form-popup__item" placeholder="Название">
+                    <input name="new-place-link" type="text" class="form-popup__item" placeholder="Ссылка на картинку">
+                </fieldset>
+                <fieldset class="form-popup__handlers">
+                    <button type="submit" class="form-popup__button">Сохранить</button>
+                </fieldset>
+            </form>
+        </div>
+    </section>
+    <section class="popup picture">
+        <div class="popup__container popup__container_pictire">
+            <img class="popup__picture">
+            <button type="button" class="popup__button-close"></button>
+            <h3 class="popup__picture-description"></h3>
+        </div>
+    </section>
+    <template id="card-element">
+        <li class="cards__item">
+            <img class="cards__image">
+            <button class="cards__button-delete"></button>
+            <div class="cards__description">
+                <h2 class="cards__title"></h2>
+                <button type="button" class="cards__button-like"></button>
+            </div>
+        </li>
+    </template>
+    <script src="./index.js"></script>
 </body>
 </html>

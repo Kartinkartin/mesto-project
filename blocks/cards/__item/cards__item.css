@@ -1,5 +1,6 @@
 .cards__item {
-    width: 100%;
+    min-width: 282px;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
