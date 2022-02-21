@@ -1,23 +1,26 @@
-.cards__button-like {
-    width: 22px;
+.cards__button-delete {
+    width: 18px;
     height: 19px;
     border: none;
     margin: 0;
     padding: 0;
-    background-color: #fff;
-    background-image: url(../../../images/Like.svg);
+    background-color: rgb(0, 0, 0, 0);
+    background-image: url(../../../images/Trash.svg);
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
+    position: absolute;
+    top: 20px;
+    right: 20px;
     opacity: 1;
     transition: opacity 0.5s linear;
 }
 
 @media screen and (min-width: 1024px) {
-    .cards__button-like {
+    .cards__button-delete {
         cursor: pointer;
     }
-    .cards__button-like:hover {
+    .cards__button-delete:hover {
         opacity: 0.5;
     }
 }
