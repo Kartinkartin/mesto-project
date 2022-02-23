@@ -30,7 +30,6 @@ function createPicturePopup(obj) {
   descriptionPicture.textContent = obj.closest('li').querySelector('.cards__title').textContent;
   imagePicture.setAttribute('src', `${obj.src}`);
   imagePicture.setAttribute('alt', `${descriptionPicture.textContent}`);
-  /////
   openPopup(popupPicture);
 }
 
