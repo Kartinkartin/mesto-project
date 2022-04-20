@@ -1,0 +1,14 @@
+.form-popup__input {
+    margin: 0 auto;
+    padding: 69px 0 0;
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+@media screen and (min-width: 1024px) {
+    .form-popup__input {
+        padding-top: 47px;
+    }
+}

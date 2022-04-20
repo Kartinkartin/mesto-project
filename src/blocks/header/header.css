@@ -1,0 +1,14 @@
+.header {
+    padding-top: 28px;
+    padding-left: 27px;
+    padding-bottom: 27px;
+    border-bottom: 1px solid #545454B3;
+}
+
+@media screen and (min-width: 1024px) {
+    .header {
+        padding-left: 0;
+        padding-top: 45px;
+        padding-bottom: 38px;
+    }
+}
