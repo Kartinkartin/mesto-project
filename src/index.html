@@ -7,16 +7,15 @@
     <meta name="description" content="travel diary">
     <meta name="keywords" content="traveling travel tourism journey">
     <meta name="author" content="Catherine Kuznetcova">
-    <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body class="page">
     <header class="header">
-        <img class="header__logo" src="./images/logo.svg" alt="Mesto">
+        <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Mesto">
     </header>
     
     <main class="content">
         <section class="profile">
-            <img src="./images/profile-photo.jpg" alt="Жак-Ив Кусто" class="profile__photo">
+            <img src="<%=require('./images/profile-photo.jpg')%>" alt="Жак-Ив Кусто" class="profile__photo">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <button type="button" class="profile__button-edit"></button>
             <p class="profile__role">Исследователь океана</p>
@@ -79,6 +78,5 @@
             </div>
         </li>
     </template>
-    <script type="module" src="./components/index.js"></script>
 </body>
 </html>
