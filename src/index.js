@@ -1,3 +1,5 @@
+import './pages/index.css'; // добавьте импорт главного файла стилей
+
 const popupSelectors = {
   form: '.form-popup',
   fieldset: '.form-popup__input',
@@ -18,9 +20,9 @@ const popupPicture = document.querySelector('.popup.picture');
 const closePopupPictureButton = popupPicture.querySelector('.popup__button-close');
 
  
-import {openPopup, closePopup} from './modal.js';
-import {createCardsList, submitNewPlace} from './card.js';
-import {enableValidation} from './validate.js';
+import {openPopup, closePopup} from './components/modal.js';
+import {createCardsList, submitNewPlace} from './components/card.js';
+import {enableValidation} from './components/validate.js';
 
 
 //тут про Popup-profile
