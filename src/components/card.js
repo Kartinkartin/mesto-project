@@ -4,16 +4,25 @@ const popupPlaceForm = document.querySelector('.popup.place');
 const namePlaceInput = popupPlaceForm.querySelector('fieldset.form-popup__input input[name=new-place-name]');
 const linkPlaceInput = popupPlaceForm.querySelector('fieldset.form-popup__input input[name=new-place-link]');
 
-import {closePopup, createPicturePopup} from './modal.js';
+import {closePopup, openPicturePopup} from './modal.js';
 
 function createCard(imageTitle, imageLink){
     const cardElement = cardTemplate.querySelector('.cards__item').cloneNode(true);
     const cardImage = cardElement.querySelector('.cards__image');
+    const cardLikeButton = cardElement.querySelector('.cards__button-like');
+    const cardDeleteButton = cardElement.querySelector('.cards__button-delete');
     cardImage.src = imageLink;
     cardImage.alt = imageTitle;
     cardElement.querySelector('.cards__title').textContent = imageTitle;
-    cardImage.addEventListener('click', function(event) { 
-        createPicturePopup(event.target);
+    cardImage.addEventListener('click', (evt) => { 
+        openPicturePopup(imageTitle, imageLink);
+        evt.stopPropagation();
+    })
+    cardLikeButton.addEventListener('click', () => {
+        cardLikeButton.classList.toggle('cards__button-like_active');
+    })
+    cardDeleteButton.addEventListener('click', () => {
+        cardDeleteButton.closest('li').remove();
     })
     return cardElement;
 }
@@ -25,7 +34,7 @@ function addCardFirst(imageTitle, imageLink) {
 }
 
 function createCardsList(array) {
-    array.forEach(function(item) {
+    array.forEach((item) => {
       addCardLast(item.name, item.link);
     });
 }
@@ -34,19 +43,12 @@ function submitNewPlace (evt) {
     evt.preventDefault();
     const namePlace = namePlaceInput.value;
     const linkPlace = linkPlaceInput.value;
+    const submitButton = evt.target.querySelector('.form-popup__button');
     addCardFirst(namePlace, linkPlace);
     closePopup(popupPlaceForm);
-    namePlaceInput.value = '';
-    linkPlaceInput.value = '';
+    evt.target.reset();
+    submitButton.setAttribute('disabled', 'disabled');
+    submitButton.classList.add('form-popup__button_inactive');
 }
-
-cardsContainer.addEventListener('click', function(evt) {
-    if(evt.target.classList.contains('cards__button-like')){
-        evt.target.classList.toggle('cards__button-like_active');
-    }
-    if(evt.target.classList.contains('cards__button-delete')){
-        evt.target.parentElement.remove();
-    }
-})
 
 export {createCardsList, submitNewPlace}

@@ -5,6 +5,9 @@ const popupSelectors = {
   fieldset: '.form-popup__input',
   input: '.form-popup__item',
   button: '.form-popup__button',
+  buttonDisabledClass: 'form-popup__button_inactive',
+  inputErrorClass: 'form-popup__item_type_error',
+  errorMessageClass: 'form-popup__item-error_active',
 }
 const profileName = document.querySelector('.profile__name');
 const profileRole = document.querySelector('.profile__role');
@@ -14,24 +17,27 @@ const jobInput = popupProfile.querySelector('fieldset.form-popup__input input[na
 const editButton = document.querySelector('.profile__button-edit');
 const addPlaceButton = document.querySelector('.profile__button-plus');
 const popupPlaceForm = document.querySelector('.popup.place');
-const closePopupPlaceButton = popupPlaceForm.querySelector('.popup__button-close');
-const closeButton = popupProfile.querySelector('.popup__button-close');
-const popupPicture = document.querySelector('.popup.picture');
-const closePopupPictureButton = popupPicture.querySelector('.popup__button-close');
+const closeButtons = document.querySelectorAll('.popup__button-close');
 
  
-import {openPopup, closePopup} from './components/modal.js';
+import {openPopup, closePopup, closePopupByOverlay} from './components/modal.js';
 import {createCardsList, submitNewPlace} from './components/card.js';
 import {enableValidation} from './components/validate.js';
 
 
 //тут про Popup-profile
-editButton.addEventListener('click', function() {
-                                      openPopup(popupProfile);
-                                      nameInput.value = profileName.textContent;
-                                      jobInput.value = profileRole.textContent;
-                                    });
-closeButton.addEventListener('click', function() {closePopup(popupProfile)});
+editButton.addEventListener('click', (evt) => {
+  openPopup(popupProfile);
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileRole.textContent;
+  evt.stopPropagation();
+});
+
+closeButtons.forEach((button) => {
+  const popup = button.closest('.popup');
+  button.addEventListener('click', () => closePopup(popup));
+});
+document.addEventListener('click', (evt) => {closePopupByOverlay(evt)});
 
 //изменение данных профиля
 function submitInfoProfile (evt) {
@@ -70,17 +76,16 @@ const initialCards = [
     name: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
-  ];
+];
 
 createCardsList(initialCards);
 
 //тут про Popup-new-Place
-addPlaceButton.addEventListener('click', function() {openPopup(popupPlaceForm)});
-closePopupPlaceButton.addEventListener('click', function() {closePopup(popupPlaceForm)});
+addPlaceButton.addEventListener('click', (evt) => {
+  openPopup(popupPlaceForm);
+  evt.stopPropagation();
+});
 popupPlaceForm.addEventListener('submit', submitNewPlace);
-
-//закрытие Popup с фотографией
-closePopupPictureButton.addEventListener('click', function() { closePopup(popupPicture) });
 
 //валидация форм
 enableValidation(popupSelectors);
