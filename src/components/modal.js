@@ -3,36 +3,41 @@ const popupPicture = document.querySelector('.popup.picture');
 const descriptionPicture = popupPicture.querySelector('.popup__picture-description');
 const imagePicture = popupPicture.querySelector('.popup__picture');
 
-function openPopup(obj) {
-    obj.classList.add('popup_opened');
-    document.querySelector('.popup_opened').addEventListener('click', closePopupByOverlay);
+function openPopup(popup) {
+    popup.classList.add('popup_opened');
     page.addEventListener('keydown', closePopupByEsc);
 }
 
-function closePopup(obj) {
+function closePopup(popup) {
     page.removeEventListener('keydown', closePopupByEsc);
-    document.querySelector('.popup_opened').removeEventListener('click', closePopupByOverlay);
-    obj.classList.remove('popup_opened');
+    popup.classList.remove('popup_opened');
 }
 
 function closePopupByOverlay(evt) {
-    if (evt.target.classList.contains('popup')) {
-        closePopup(evt.target);
-    }
+    const openedPopup = document.querySelector('.popup_opened');
+    if(openedPopup && !evt.path.some( (el, index, array) => {
+        const maxIndex = array.length -4;
+        return index<maxIndex && el.classList.contains('popup__container')
+    })) {
+            closePopup(openedPopup);
+        }
 }
+
 
 function closePopupByEsc(evt) {
-    if(evt.key === 'Escape' && page.querySelector('.popup_opened')) {
-        let openedPopup = evt.currentTarget.querySelector('.popup_opened');
-        closePopup(openedPopup);
+    if(evt.key === 'Escape') {
+        const openedPopup = page.querySelector('.popup_opened')
+        if(openedPopup) {
+            closePopup(openedPopup);
+        }
     }
 }
 
-function createPicturePopup(obj) {
-    descriptionPicture.textContent = obj.closest('li').querySelector('.cards__title').textContent;
-    imagePicture.setAttribute('src', `${obj.src}`);
-    imagePicture.setAttribute('alt', `${descriptionPicture.textContent}`);
+function openPicturePopup(title, link) {
+    descriptionPicture.textContent = title;
+    imagePicture.setAttribute('src', `${link}`);
+    imagePicture.setAttribute('alt', `${title}`);
     openPopup(popupPicture);
 }
 
-export { openPopup, closePopup, closePopupByOverlay, createPicturePopup }
+export { openPopup, closePopup, closePopupByOverlay, openPicturePopup }
