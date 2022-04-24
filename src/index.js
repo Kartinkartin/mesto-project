@@ -9,6 +9,7 @@ const popupSelectors = {
   inputErrorClass: 'form-popup__item_type_error',
   errorMessageClass: 'form-popup__item-error_active',
 }
+const popups = document.querySelectorAll('.popup');
 const profileName = document.querySelector('.profile__name');
 const profileRole = document.querySelector('.profile__role');
 const popupProfile = document.querySelector('.popup.profile');
@@ -33,11 +34,16 @@ editButton.addEventListener('click', (evt) => {
   evt.stopPropagation();
 });
 
-closeButtons.forEach((button) => {
-  const popup = button.closest('.popup');
-  button.addEventListener('click', () => closePopup(popup));
-});
-document.addEventListener('click', (evt) => {closePopupByOverlay(evt)});
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+        closePopup(popup)
+    }
+    if (evt.target.classList.contains('popup__button-close')) {
+      closePopup(popup)
+    }
+})})
+
 
 //изменение данных профиля
 function submitInfoProfile (evt) {
