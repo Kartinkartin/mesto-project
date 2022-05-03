@@ -48,27 +48,30 @@ function submitInfoProfile(evt) {
   const newName = nameInput.value;
   const newRole = jobInput.value;
   submitButtonOnLoading(popupProfile);
-  debugger
   patchUser(newName, newRole)
   .then(newUser => {
     profileName.textContent = newUser.name;
     profileRole.textContent = newUser.about;
-    //closePopup(popupProfile);
-    return Promise.resolve();
+    closePopup(popupProfile);
+    return Promise.resolve(1000);
   })
-  .finally(() => {
-    return closePopup(popupProfile);
-    // setTimeout(submitButtonOnLoading(popupProfile);
+  .then((time) => {
+    setTimeout(() => {submitButtonOnLoading(popupProfile)}, time);
   })
-  .then(() => {return setTimeout(submitButtonOnLoading(popupProfile), 2000)});
-  // submitButton.classList.add('form-popup__button_inactive');
 }
 
 function submitAvatar(evt) {
   evt.preventDefault();
+  submitButtonOnLoading(popupAvatar);
   patchAvatar(avatarInput.value)
   .then(profileImage.src = avatarInput.value)
-  .finally(closePopup(popupAvatar))
+  .then(() => {
+    closePopup(popupAvatar);
+    return Promise.resolve(1000);
+  })
+  .then((time) => {
+    setTimeout(() => {submitButtonOnLoading(popupAvatar)}, time);
+  })
 }
 
 //получение данных пользователя
