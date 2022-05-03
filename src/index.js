@@ -12,28 +12,84 @@ const popupSelectors = {
 const popups = document.querySelectorAll('.popup');
 const profileName = document.querySelector('.profile__name');
 const profileRole = document.querySelector('.profile__role');
+const profileImage = document.querySelector('.profile__photo');
+const profileImageShield = document.querySelector('.profile__photo.profile__photo-shield');
 const popupProfile = document.querySelector('.popup.profile');
 const nameInput = popupProfile.querySelector('fieldset.form-popup__input input[name=name]');
 const jobInput = popupProfile.querySelector('fieldset.form-popup__input input[name=role]');
+const popupAvatar = document.querySelector('.popup.avatar');
+const avatarInput = popupAvatar.querySelector('fieldset.form-popup__input input[name=avatar-link]');
 const editButton = document.querySelector('.profile__button-edit');
 const addPlaceButton = document.querySelector('.profile__button-plus');
 const popupPlaceForm = document.querySelector('.popup.place');
-const closeButtons = document.querySelectorAll('.popup__button-close');
-
+export const meUserProperties = {};
  
-import {openPopup, closePopup, closePopupByOverlay} from './components/modal.js';
+import {openPopup, closePopup} from './components/modal.js';
 import {createCardsList, submitNewPlace} from './components/card.js';
 import {enableValidation} from './components/validate.js';
+import {getUser, getINitialCards, patchUser, patchAvatar} from './api.js' //fetch
 
+function submitButtonOnLoading (popup) {
+  const submitButton = popup.querySelector('.form-popup__button');
+  if(popup.classList.contains('popup_opened')) {
+    submitButton.setAttribute('disabled', 'disabled');
+    submitButton.textContent = 'Сохранение...';
+    submitButton.classList.add('form-popup__button_inactive');
+    return;
+  }
+  submitButton.classList.remove('form-popup__button_inactive');
+  submitButton.textContent = 'Сохранить';
+  submitButton.removeAttribute('disabled', 'disabled');
+  return;
+}
 
-//тут про Popup-profile
-editButton.addEventListener('click', (evt) => {
-  openPopup(popupProfile);
+function submitInfoProfile(evt) {
+  evt.preventDefault();
+  const newName = nameInput.value;
+  const newRole = jobInput.value;
+  submitButtonOnLoading(popupProfile);
+  debugger
+  patchUser(newName, newRole)
+  .then(newUser => {
+    profileName.textContent = newUser.name;
+    profileRole.textContent = newUser.about;
+    //closePopup(popupProfile);
+    return Promise.resolve();
+  })
+  .finally(() => {
+    return closePopup(popupProfile);
+    // setTimeout(submitButtonOnLoading(popupProfile);
+  })
+  .then(() => {return setTimeout(submitButtonOnLoading(popupProfile), 2000)});
+  // submitButton.classList.add('form-popup__button_inactive');
+}
+
+function submitAvatar(evt) {
+  evt.preventDefault();
+  patchAvatar(avatarInput.value)
+  .then(profileImage.src = avatarInput.value)
+  .finally(closePopup(popupAvatar))
+}
+
+//получение данных пользователя
+getUser()
+  .then(user => {
+    profileName.textContent = user.name;
+    profileRole.textContent = user.about;
+    profileImage.alt = user.name;
+    profileImage.src = `${user.avatar}`;
+    meUserProperties.id = user._id
+  })
+//тут про Popup-profile и изменение данных пользователя
+editButton.addEventListener('click', () => {
   nameInput.value = profileName.textContent;
   jobInput.value = profileRole.textContent;
-  evt.stopPropagation();
+  openPopup(popupProfile);
 });
-
+popupProfile.addEventListener('submit', submitInfoProfile);
+profileImageShield.addEventListener('click', () => {openPopup(popupAvatar)});
+popupAvatar.addEventListener('submit', submitAvatar)
+//закрытие по всем крестикам по всем оверлеям
 popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
     if (evt.target.classList.contains('popup_opened')) {
@@ -44,52 +100,14 @@ popups.forEach((popup) => {
     }
 })})
 
-
-//изменение данных профиля
-function submitInfoProfile (evt) {
-  evt.preventDefault(); 
-  const newName = nameInput.value;
-  const newRole = jobInput.value;
-  profileName.textContent = newName;
-  profileRole.textContent = newRole;
-  closePopup(popupProfile);
-}
-popupProfile.addEventListener('submit', submitInfoProfile);
-
-//про добавление карточек
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
-createCardsList(initialCards);
+//добавление карточек из массива с сервера
+getINitialCards()
+  .then((initialCardsArray) => { createCardsList(initialCardsArray) })
+  .catch(err => { document.querySelector('.cards').textContent = err });
 
 //тут про Popup-new-Place
-addPlaceButton.addEventListener('click', (evt) => {
+addPlaceButton.addEventListener('click', () => {
   openPopup(popupPlaceForm);
-  evt.stopPropagation();
 });
 popupPlaceForm.addEventListener('submit', submitNewPlace);
 

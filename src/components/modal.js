@@ -6,21 +6,17 @@ const imagePicture = popupPicture.querySelector('.popup__picture');
 function openPopup(popup) {
     popup.classList.add('popup_opened');
     page.addEventListener('keydown', closePopupByEsc);
-    //page.addEventListener('mousedown', closePopupByOverlay);
 }
 
 function closePopup(popup) {
     page.removeEventListener('keydown', closePopupByEsc);
-    //page.removeEventListener('mousedown', closePopupByOverlay);
     popup.classList.remove('popup_opened');
+    const submitButton = popup.querySelector('.form-popup__button');
+    if (submitButton) {
+        setTimeout(()=>{submitButton.classList.add('form-popup__button_inactive')}, 0)
+    }
+    
 }
-
-// function closePopupByOverlay(evt) {
-//     if(evt.target.classList.contains('popup')) {
-//         closePopup(evt.target);
-//     }
-// }
-
 
 function closePopupByEsc(evt) {
     if(evt.key === 'Escape') {

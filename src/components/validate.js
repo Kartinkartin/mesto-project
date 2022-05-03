@@ -30,6 +30,7 @@ function hasInvalidInput(inputList) {
 }
   
 function toggleButtonState(inputList, buttonElement, selectors) {
+    // buttonElement.textContent = 'Сохранить';
     if(hasInvalidInput(inputList)) {
       buttonElement.setAttribute('disabled', 'disabled');
       buttonElement.classList.add(selectors.buttonDisabledClass);
