@@ -29,19 +29,6 @@ import {createCardsList, submitNewPlace} from './components/card.js';
 import {enableValidation} from './components/validate.js';
 import {getUser, getINitialCards, patchUser, patchAvatar} from './api.js' //fetch
 
-function submitButtonOnLoading (popup) {
-  const submitButton = popup.querySelector('.form-popup__button');
-  if(popup.classList.contains('popup_opened')) {
-    submitButton.setAttribute('disabled', 'disabled');
-    submitButton.textContent = 'Сохранение...';
-    submitButton.classList.add('form-popup__button_inactive');
-    return;
-  }
-  submitButton.classList.remove('form-popup__button_inactive');
-  submitButton.textContent = 'Сохранить';
-  submitButton.removeAttribute('disabled', 'disabled');
-  return;
-}
 
 function submitInfoProfile(evt) {
   evt.preventDefault();
