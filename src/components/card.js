@@ -6,7 +6,7 @@ const linkPlaceInput = popupPlaceForm.querySelector('fieldset.form-popup__input 
 
 import { meUserProperties } from '../index.js';
 import { postCard, deleteCard, putLikeOnCard, deleteLikeOnCard } from '../api.js';
-import {closePopup, openPicturePopup} from './modal.js';
+import {closePopup, openPicturePopup, submitButtonOnLoading} from './modal.js';
 
 function createCardDeleteButton(cardId){
     const cardDeleteButton = document.createElement('button');
@@ -73,12 +73,14 @@ function submitNewPlace (evt) {
     const namePlace = namePlaceInput.value;
     const linkPlace = linkPlaceInput.value;
     const submitButton = evt.target.querySelector('.form-popup__button');
+    submitButton(popupPlaceForm);
     postCard(namePlace, linkPlace)
     .then(addCardFirst(namePlace, linkPlace));
     closePopup(popupPlaceForm);
     evt.target.reset(); //сбрасываю форму
     submitButton.setAttribute('disabled', 'disabled');
     submitButton.classList.add('form-popup__button_inactive');
+    submitButton.textContent = 'Сохранить';
 }
 
 export {createCardsList, submitNewPlace}

@@ -24,7 +24,7 @@ const addPlaceButton = document.querySelector('.profile__button-plus');
 const popupPlaceForm = document.querySelector('.popup.place');
 export const meUserProperties = {};
  
-import {openPopup, closePopup} from './components/modal.js';
+import {openPopup, closePopup, submitButtonOnLoading} from './components/modal.js';
 import {createCardsList, submitNewPlace} from './components/card.js';
 import {enableValidation} from './components/validate.js';
 import {getUser, getINitialCards, patchUser, patchAvatar} from './api.js' //fetch
