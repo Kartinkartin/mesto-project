@@ -8,5 +8,7 @@
 }
 
 @media screen and (min-width: 1024px) {
-    .popup__container_pictire {width: 768px;}
+    .popup__container_pictire {
+        max-width: 768px;
+    }
 }
