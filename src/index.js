@@ -34,42 +34,49 @@ function submitInfoProfile(evt) {
   evt.preventDefault();
   const newName = nameInput.value;
   const newRole = jobInput.value;
+  const submitButton = evt.target.querySelector('.form-popup__button');
   submitButtonOnLoading(popupProfile);
   patchUser(newName, newRole)
   .then(newUser => {
     profileName.textContent = newUser.name;
     profileRole.textContent = newUser.about;
     closePopup(popupProfile);
-    return Promise.resolve(1000);
   })
-  .then((time) => {
-    setTimeout(() => {submitButtonOnLoading(popupProfile)}, time);
-  })
+  .catch(err => console.log(`Ошибка: ${err}`))
+  .finally(setTimeout(() => {
+      return submitButton.textContent = 'Сохранить'
+    }, 1000)
+  )
 }
 
 function submitAvatar(evt) {
   evt.preventDefault();
+  const submitButton = evt.target.querySelector('.form-popup__button');
   submitButtonOnLoading(popupAvatar);
   patchAvatar(avatarInput.value)
   .then(profileImage.src = avatarInput.value)
   .then(() => {
     closePopup(popupAvatar);
-    return Promise.resolve(1000);
   })
-  .then((time) => {
-    setTimeout(() => {submitButtonOnLoading(popupAvatar)}, time);
-  })
+  .catch(err => console.log(`Ошибка: ${err}`))
+  .finally(setTimeout(() => {
+      return submitButton.textContent = 'Сохранить'
+    }, 1000)
+  )
 }
 
-//получение данных пользователя
-getUser()
-  .then(user => {
+//получение данных пользователя и карточек с сервера
+Promise.all([getUser(), getINitialCards()])
+  .then(([user, initialCardsArray]) => {
     profileName.textContent = user.name;
     profileRole.textContent = user.about;
     profileImage.alt = user.name;
     profileImage.src = `${user.avatar}`;
-    meUserProperties.id = user._id
+    meUserProperties.id = user._id;
+    createCardsList(initialCardsArray);
   })
+  .catch(err => console.log(`Ошибка: ${err}`));
+
 //тут про Popup-profile и изменение данных пользователя
 editButton.addEventListener('click', () => {
   nameInput.value = profileName.textContent;
@@ -89,11 +96,6 @@ popups.forEach((popup) => {
       closePopup(popup)
     }
 })})
-
-//добавление карточек из массива с сервера
-getINitialCards()
-  .then((initialCardsArray) => { createCardsList(initialCardsArray) })
-  .catch(err => { document.querySelector('.cards').textContent = err });
 
 //тут про Popup-new-Place
 addPlaceButton.addEventListener('click', () => {

@@ -13,7 +13,8 @@ function createCardDeleteButton(cardId){
     cardDeleteButton.classList.add('cards__button-delete');
     cardDeleteButton.addEventListener('click', () => {
         deleteCard(cardId)
-        .then(cardDeleteButton.closest('li').remove());
+        .then(cardDeleteButton.closest('li').remove())
+        .catch(err => console.log(`Ошибка: ${err}`));
     })
     return cardDeleteButton;
 }
@@ -43,6 +44,7 @@ function createCard(cardProperties){
                 cardLikeButton.classList.add('cards__button-like_active');
                 return cardLikeCounter.textContent = newCardProrerties.likes.length;
             })
+            .catch(err => console.log(`Ошибка: ${err}`));
             return;
         }
         if(cardLikeButton.classList.contains('cards__button-like_active')) {
@@ -50,7 +52,8 @@ function createCard(cardProperties){
             .then((newCardProrerties) => {
                 cardLikeButton.classList.remove('cards__button-like_active');
                 return cardLikeCounter.textContent = newCardProrerties.likes.length;
-            });
+            })
+            .catch(err => console.log(`Ошибка: ${err}`));
         }
     })
     return cardElement;
@@ -73,14 +76,22 @@ function submitNewPlace (evt) {
     const namePlace = namePlaceInput.value;
     const linkPlace = linkPlaceInput.value;
     const submitButton = evt.target.querySelector('.form-popup__button');
-    submitButton(popupPlaceForm);
+    submitButtonOnLoading(popupPlaceForm);
     postCard(namePlace, linkPlace)
-    .then(addCardFirst(namePlace, linkPlace));
-    closePopup(popupPlaceForm);
-    evt.target.reset(); //сбрасываю форму
-    submitButton.setAttribute('disabled', 'disabled');
-    submitButton.classList.add('form-popup__button_inactive');
-    submitButton.textContent = 'Сохранить';
+    .then(cardProperties => {
+        addCardFirst(cardProperties);
+        closePopup(popupPlaceForm);
+        return Promise.resolve(1000);
+    })
+    .then(time => {
+        setTimeout(() => {
+            evt.target.reset(); //сбрасываю форму
+            submitButton.setAttribute('disabled', 'disabled');
+            submitButton.classList.add('form-popup__button_inactive');
+        }, time);
+    })
+    .catch(err => console.log(`Ошибка: ${err}`))
+    .finally(setTimeout(() => {return submitButton.textContent = 'Сохранить'}, 1000));
 }
 
 export {createCardsList, submitNewPlace}
