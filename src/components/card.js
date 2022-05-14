@@ -4,15 +4,15 @@ const popupPlaceForm = document.querySelector('.popup.place');
 const namePlaceInput = popupPlaceForm.querySelector('fieldset.form-popup__input input[name=new-place-name]');
 const linkPlaceInput = popupPlaceForm.querySelector('fieldset.form-popup__input input[name=new-place-link]');
 
-import { meUserProperties } from '../index.js';
-import { postCard, deleteCard, putLikeOnCard, deleteLikeOnCard } from '../api.js';
+import { meUserProperties } from '../pages/index.js';
+import { allFetches } from '../utils/constants.js';
 import {closePopup, openPicturePopup, submitButtonOnLoading} from './modal.js';
 
 function createCardDeleteButton(cardId){
     const cardDeleteButton = document.createElement('button');
     cardDeleteButton.classList.add('cards__button-delete');
     cardDeleteButton.addEventListener('click', () => {
-        deleteCard(cardId)
+        allFetches.deleteCard(cardId)
         .then(cardDeleteButton.closest('li').remove())
         .catch(err => console.log(`Ошибка: ${err}`));
     })
@@ -39,7 +39,7 @@ function createCard(cardProperties){
     })
     cardLikeButton.addEventListener('click', () => {
         if(!cardLikeButton.classList.contains('cards__button-like_active')){
-            putLikeOnCard(cardProperties._id)
+            allFetches.putLikeOnCard(cardProperties._id)
             .then((newCardProrerties) => {
                 cardLikeButton.classList.add('cards__button-like_active');
                 return cardLikeCounter.textContent = newCardProrerties.likes.length;
@@ -48,7 +48,7 @@ function createCard(cardProperties){
             return;
         }
         if(cardLikeButton.classList.contains('cards__button-like_active')) {
-            deleteLikeOnCard(cardProperties._id)
+            allFetches.deleteLikeOnCard(cardProperties._id)
             .then((newCardProrerties) => {
                 cardLikeButton.classList.remove('cards__button-like_active');
                 return cardLikeCounter.textContent = newCardProrerties.likes.length;
@@ -77,7 +77,7 @@ function submitNewPlace (evt) {
     const linkPlace = linkPlaceInput.value;
     const submitButton = evt.target.querySelector('.form-popup__button');
     submitButtonOnLoading(popupPlaceForm);
-    postCard(namePlace, linkPlace)
+    allFetches.postCard(namePlace, linkPlace)
     .then(cardProperties => {
         addCardFirst(cardProperties);
         closePopup(popupPlaceForm);
